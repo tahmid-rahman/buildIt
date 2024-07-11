@@ -3,6 +3,7 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -14,7 +15,7 @@ export default function Home() {
     signOut();
   };
   return (
-    <div className="">
+    <div className="h-screen">
       <div className="">
         {status !== "authenticated" ? (
           <>
