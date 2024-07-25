@@ -1,47 +1,24 @@
 "use client";
-import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
 
 export default function Login() {
-  const { status } = useSession();
-  const router = useRouter();
-
-  if (status === "authenticated") {
-    router.push("/");
-  }
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
-  const handleSignIn = (e) => {
-    e.preventDefault();
-    signIn("credentials", { email, password, redirect: false }).then(async (e) => {
-      if (e.error) {
-        setError("Invalid email/password");
-      } else {
-        router.push("/");
-      }
-    });
-  };
-
   return (
-    <div className=" h-screen flex justify-center items-center">
-      <div className="bg-green-200  w-[400px] h-[500px] rounded-lg shadow-lg">
+    <div className=" h-screen flex justify-center items-center text-gray-200">
+      <div className="border-0 bg-transparent dark:border-white border-black sm:border-[1px] sm:w-[400px] w-full rounded-lg ">
         <p className="text-4xl font-bold mx-auto w-fit pt-[50px] text-green-600">Login</p>
         <div className="p-8">
-          <p className={error === "" ? "hidden" : "block text-red-500"}>{error}</p>
-          <form className="" onSubmit={handleSignIn}>
+          {/* <p className={error === "" ? "hidden" : "block text-red-500"}>{error}</p> */}
+          <form className="">
             <div>
               {/* <label className="">Email</label> */}
               <input
                 type="email"
-                value={email}
+                //   value={email}
                 name="email"
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full my-1.5 shadow-md outline-none px-3 py-1.5 rounded-md"
+                // onChange={(e) => setEmail(e.target.value)}
+                className="w-full my-1.5 shadow-md outline-none px-3 py-1.5 rounded-md bg-transparent border-white border-[1px]"
                 placeholder="Email"
                 required
               />
@@ -51,30 +28,34 @@ export default function Login() {
               <input
                 type="password"
                 name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full my-1.5 shadow-md outline-none px-3 py-1.5 rounded-md"
+                //  value={password}
+                // onChange={(e) => setPassword(e.target.value)}
+                className="w-full my-1.5 shadow-md outline-none px-3 py-1.5 rounded-md bg-transparent border-white border-[1px]"
                 placeholder="Password"
                 required
               />
             </div>
             <button
               type="submit"
-              className="w-full py-2 bg-green-500 my-1.5 rounded-md shadow-md cursor-pointer text-white font-bold  hover:bg-white focus:bg-green-600 hover:text-green-500 focus:text-white"
+              className="w-full py-2 bg-green-500 my-1.5 rounded-md shadow-md cursor-pointer text-white font-bold  hover:bg-white focus:bg-green-600 hover:text-green-500 focus:text-white "
             >
               Log in
             </button>
           </form>
 
+          <Link href="#" className="text-sm text-gray-400 w-fit ml-auto hover:underline">
+            Forgot Password?
+          </Link>
+
           <div className="">
-            <hr className="" />
-            <p className="w-fit mx-auto my-3 text-gray-700">or continue with</p>
-            <hr className="" />
+            <hr className="my-2 border-gray-500" />
+            <p className="w-fit mx-auto my-3 text-gray-400">or continue with</p>
+            <hr className="my-2 border-gray-500" />
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between my-2">
             <button
               className="flex bg-white rounded-md px-[38px] py-2 shadow-md cursor-pointer hover:bg-green-50"
-              onClick={() => signIn("google")}
+              //onClick={() => signIn("google")}
             >
               <span>
                 <svg viewBox="0 0 32 32" width="24" height="24">
@@ -100,7 +81,7 @@ export default function Login() {
 
             <button
               className="flex bg-white rounded-md px-[38px] py-2 shadow-md cursor-pointer hover:bg-green-50"
-              onClick={() => signIn("github")}
+              // onClick={() => signIn("github")}
             >
               <span>
                 <svg width="24" height="auto" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg">
@@ -115,11 +96,11 @@ export default function Login() {
               <span className="pl-1 font-medium text-gray-600"> Github</span>
             </button>
           </div>
-          <p className="w-fit mx-auto my-3 text-gray-700">Don't have an account? </p>
+          <p className="w-fit mx-auto my-3 text-gray-400">Don't have an account? </p>
 
           <Link
             href="/register"
-            className="w-[336px] py-2 bg-white rounded-md flex justify-center my-2 shadow-md hover:bg-green-500 hover:text-white text-green-500 cursor-pointer font-bold"
+            className=" w-full py-2 bg-white rounded-md flex justify-center my-2 shadow-md hover:bg-green-500 hover:text-white text-green-500 cursor-pointer font-bold"
           >
             Sign up
           </Link>
