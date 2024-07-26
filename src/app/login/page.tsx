@@ -2,62 +2,45 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 export default function Login() {
   return (
-    <div className=" h-screen flex justify-center items-center text-gray-200">
-      <div className="border-0 bg-transparent dark:border-white border-black sm:border-[1px] sm:w-[400px] w-full rounded-lg ">
-        <p className="text-4xl font-bold mx-auto w-fit pt-[50px] text-green-600">Login</p>
-        <div className="p-8">
-          {/* <p className={error === "" ? "hidden" : "block text-red-500"}>{error}</p> */}
-          <form className="">
-            <div>
-              {/* <label className="">Email</label> */}
-              <input
-                type="email"
-                //   value={email}
-                name="email"
-                // onChange={(e) => setEmail(e.target.value)}
-                className="w-full my-1.5 shadow-md outline-none px-3 py-1.5 rounded-md bg-transparent border-white border-[1px]"
-                placeholder="Email"
-                required
-              />
-            </div>
-            <div>
-              {/* <label className="">Password</label> */}
-              <input
-                type="password"
-                name="password"
-                //  value={password}
-                // onChange={(e) => setPassword(e.target.value)}
-                className="w-full my-1.5 shadow-md outline-none px-3 py-1.5 rounded-md bg-transparent border-white border-[1px]"
-                placeholder="Password"
-                required
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full py-2 bg-green-500 my-1.5 rounded-md shadow-md cursor-pointer text-white font-bold  hover:bg-white focus:bg-green-600 hover:text-green-500 focus:text-white "
-            >
-              Log in
-            </button>
+    <>
+      <ThemeToggle />
+      <div className="flex justify-center items-center h-[90vh]">
+        <div className="w-[400px] border-[1px] border-black dark:border-[#262626] px-5 py-7 rounded-xl">
+          <p className="w-fit mx-auto my-4 font-bold text-2xl">Welcome Back!</p>
+          <form action="" className="">
+            <Input
+              className="my-2 shadow-md dark:shadow-gray-950"
+              placeholder="Email"
+              id="email"
+              name="email"
+              type="email"
+              required
+            />
+            <Input
+              className="my-2 shadow-md dark:shadow-gray-950"
+              placeholder="Password"
+              id="pass"
+              name="pass"
+              type="password"
+              required
+            />
+            <Button className="w-full my-1">LogIn &rarr;</Button>
           </form>
-
-          <Link href="#" className="text-sm text-gray-400 w-fit ml-auto hover:underline">
-            Forgot Password?
-          </Link>
-
-          <div className="">
-            <hr className="my-2 border-gray-500" />
-            <p className="w-fit mx-auto my-3 text-gray-400">or continue with</p>
-            <hr className="my-2 border-gray-500" />
+          <div className="w-fit ml-auto">
+            <Link href={"/recover"} className="text-sm font-thin hover:underline hover:text-green-700">
+              Forget Password?
+            </Link>
           </div>
+          <p className="w-fit mx-auto my-3 text-base font-thin">or continue with</p>
           <div className="flex justify-between my-2">
-            <button
-              className="flex bg-white rounded-md px-[38px] py-2 shadow-md cursor-pointer hover:bg-green-50"
-              //onClick={() => signIn("google")}
-            >
-              <span>
+            <Button className="bg-slate-100 w-full mx-2 hover:bg-slate-300 shadow-md border-[#262626]">
+              <span className="">
                 <svg viewBox="0 0 32 32" width="24" height="24">
                   <defs>
                     <path
@@ -76,14 +59,10 @@ export default function Login() {
                   </g>
                 </svg>
               </span>
-              <span className="pl-1 font-medium text-gray-600"> Google</span>
-            </button>
-
-            <button
-              className="flex bg-white rounded-md px-[38px] py-2 shadow-md cursor-pointer hover:bg-green-50"
-              // onClick={() => signIn("github")}
-            >
-              <span>
+              <p className="text-black py-2"> &nbsp; Google</p>
+            </Button>
+            <Button className="bg-slate-100 w-full mx-2 hover:bg-slate-300 shadow-md border-[#262626]">
+              <span className="">
                 <svg width="24" height="auto" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg">
                   <path
                     fillRule="evenodd"
@@ -93,19 +72,17 @@ export default function Login() {
                   />
                 </svg>
               </span>
-              <span className="pl-1 font-medium text-gray-600"> Github</span>
-            </button>
+              <p className="text-black py-2"> &nbsp; Github </p>
+            </Button>
           </div>
-          <p className="w-fit mx-auto my-3 text-gray-400">Don't have an account? </p>
-
-          <Link
-            href="/register"
-            className=" w-full py-2 bg-white rounded-md flex justify-center my-2 shadow-md hover:bg-green-500 hover:text-white text-green-500 cursor-pointer font-bold"
-          >
-            Sign up
-          </Link>
+          <div className="w-fit ml-auto text-sm font-thin my-1">
+            Don't have an account? &nbsp;
+            <Link href={"/register"} className="underline font-normal hover:text-green-700">
+              Create one
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
