@@ -1,3 +1,4 @@
+import { signIn } from "@/auth";
 import { ThemeToggle } from "@/components/theme-toggle";
 import Image from "next/image";
 
