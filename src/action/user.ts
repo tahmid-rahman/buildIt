@@ -9,31 +9,14 @@ import { signIn } from "@/auth";
 const login = async (formData: FormData) => {
   const email = formData.get("email") as string;
   const password = formData.get("pass") as string;
-
-  if (!email || !password) {
-    return "Email and password are required.";
-  }
-
   try {
-    console.log("Attempting login with:", email);
-    const result = await signIn("credentials", {
-      redirect: false,
-      callbackUrl: "/",
-      email,
-      password,
-    });
-
-    if (result?.error) {
-      return result.error; // Return error to be displayed to the user
-    }
-
-    if (result?.ok) {
-      redirect("/"); // Redirect only if sign-in is successful
-    }
+    //console.log(email, password);
+    await signIn("credentials", { redirect: false, callbackUrl: "/", email, password });
   } catch (error) {
-    console.error("Sign-in error:", error);
-    return "An error occurred during sign-in.";
+    const someError = error as CredentialsSignin;
+    return someError.cause;
   }
+  redirect("/");
 };
 
 const register = async (formData: FormData) => {

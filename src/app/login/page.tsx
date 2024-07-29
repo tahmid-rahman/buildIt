@@ -20,7 +20,7 @@ export default async function Login() {
       <div className="flex justify-center items-center h-[90vh]">
         <div className="w-[400px] border-[1px] border-black dark:border-[#262626] px-5 py-7 rounded-xl">
           <p className="w-fit mx-auto my-4 font-bold text-2xl">Welcome Back!</p>
-          <form action={login} className="">
+          <form action={login} className="" encType="multipart/form-data">
             <Input
               className="my-2 shadow-md dark:shadow-gray-950"
               placeholder="Email"
